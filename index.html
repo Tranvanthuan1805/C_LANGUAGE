@@ -1,0 +1,185 @@
+
+<!-- 
+  Trang chủ khóa học: Học lập trình C cơ bản
+  - Giao diện hiện đại, có hiệu ứng, responsive
+  - Nút "Bắt đầu học" chuyển tới bài học đầu tiên
+  - Danh sách các buổi học: chỉ hiện tên buổi, click vào từng buổi sẽ mở video Google Drive tương ứng bên phải (không cần sang trang mới)
+  - Thông báo về bài tập về nhà làm qua link Google Sheet
+  - Avatar giảng viên (Thuần Lại Lập Trình)
+  - Comment rõ ràng
+-->
+<link rel="stylesheet" href="css/style.css">
+<!-- Highlight.js cho code highlight (nếu cần) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+<style>
+.avatar-glow {
+  box-shadow: 0 0 0 4px #6366f1, 0 0 16px 8px #818cf8;
+  transition: box-shadow 0.4s;
+}
+.avatar-glow:hover {
+  box-shadow: 0 0 0 8px #818cf8, 0 0 32px 16px #6366f1;
+}
+@media (max-width: 900px) {
+  .main-flex {
+    flex-direction: column;
+  }
+  .video-panel {
+    margin-left: 0;
+    margin-top: 24px;
+    width: 100%;
+  }
+}
+</style>
+<div class="course-home">
+  <header class="course-header">
+    <div style="display:flex; flex-direction:column; align-items:center; gap:12px;">
+      <!-- Avatar giảng viên -->
+      <img src="https://github.com/Tranvanthuan1805/Image/blob/main/74381b7b-7e0c-4030-a843-80d61ae125ba.jpg?raw=true" alt="Avatar Thuần Lại Lập Trình" width="96" height="96" class="avatar-glow" style="border-radius:50%;object-fit:cover;">
+      <span style="font-weight:500; color:#6366f1; font-size:1.1rem;">Thuần Lại Lập Trình</span>
+    </div>
+    <h1 style="margin-top:12px;">Học lập trình C cơ bản</h1>
+    <p>Khóa học dành cho người mới bắt đầu, từng bước làm chủ ngôn ngữ C.</p>
+    <a href="#" class="start-btn" id="startBtn">Bắt đầu học</a>
+  </header>
+  <div class="main-flex" style="display:flex; gap:32px; align-items:flex-start; justify-content:space-between;">
+    <section class="lesson-list" style="flex:1 1 320px; min-width:220px;">
+      <h2>Danh sách bài học</h2>
+      <ol id="lessonList" style="counter-reset:lesson;">
+        <!-- Danh sách buổi học, chỉ hiện tên buổi, click sẽ đổi video bên phải -->
+        <li data-drive="1pd4ogQ1sPYqTetSdGmU0UOwgOFbdqDp_">Buổi 1</li>
+        <li data-drive="1Z0vXfpwZd10yTbgAoO6Fh3ZpYSPZSTKx">Buổi 2</li>
+        <li data-drive="1aI_CFxSSqs5b8x_jo2CJSm-mvXc2ulU4">Buổi 3</li>
+        <li data-drive="1fOhYItHvVL4QcTsQ7XF-o4ofVIHI8YY9">Buổi 4</li>
+        <li data-drive="1S8sCafknNjw92z8jnKJL1IH-yzcIhQQO">Buổi 5</li>
+        <li data-drive="1pBJwIwk-jnMFEVFTyQA7dw1T0njVWiPQ">Buổi 6</li>
+        <li data-drive="1cQV4YnIi_zuIIi-ttoGIgu44egjYWrux">Buổi 7</li>
+        <li data-drive="1e66Y-B4eFytM-D8D_BwB1h7UK11E-SBe">Buổi 8</li>
+        <li data-drive="1jopLDqWoiZb0WYQKHdbIoC9i4QULa-2t">Buổi 9</li>
+        <li data-drive="1_mxLuccprU1-ZEbVp6tL59jLiYIoG3em">Buổi 10</li>
+        <li data-drive="1SYnhEepoXT2l0o11Zrm_8laAZTSxB0WF">Buổi 11</li>
+        <li data-drive="1plrm6Ynm5vWbWWMzp1M3JKyG7D1WinEs">Buổi 12</li>
+        <li data-drive="1hX7zfwWlKb0GYf4YxwcUuWcKkB2GmX0d">Buổi 13</li>
+        <li data-drive="1G7Yrr_B19skdR6Kj7BBuC-JN1XtIFBuH">Buổi 14</li>
+        <li data-drive="11a_fosLD6Q7BsPx1oArgHDWiqlY3ArDN">Buổi 15</li>
+        <li data-drive="1ZYgmTJs1ChArIWKN5BgD9RHyE7QAppOy">Buổi 16</li>
+        <li data-drive="1vRama_bTZ5ZfcrADo-cnuvj44ds46tgG">Buổi 17</li>
+        <li data-drive="1GxqheDUc8VKd80xIDmWZJR3H0XeoaFKZ">Buổi 18</li>
+      </ol>
+      <div class="homework-notice" style="margin-top:24px; background:#e0e7ff; border-radius:8px; padding:12px 16px; color:#3730a3; font-size:1rem; display:flex; align-items:center; gap:8px;">
+        <i class="ri-information-line" style="font-size:1.3em;"></i>
+        <span>
+          <b>Bài tập về nhà:</b> Làm qua link Google Sheet được gửi trong từng buổi học!
+        </span>
+      </div>
+    </section>
+    <section class="video-panel" style="flex:2 1 400px; min-width:260px; background:#f3f4f6; border-radius:12px; box-shadow:0 2px 12px rgba(79,70,229,0.07); padding:18px 12px; transition:box-shadow 0.3s;">
+      <h2 id="videoTitle" style="color:#4f46e5; font-size:1.2rem; margin-bottom:10px;">Buổi 1</h2>
+      <div class="video-responsive" style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px;">
+        <iframe id="lessonVideo" src="https://drive.google.com/file/d/1pd4ogQ1sPYqTetSdGmU0UOwgOFbdqDp_/preview" width="640" height="360" allow="autoplay" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;border-radius:8px;box-shadow:0 2px 8px #6366f1;"></iframe>
+      </div>
+      <div class="video-effect-bar" style="height:4px; width:0; background:linear-gradient(90deg,#6366f1,#818cf8); border-radius:2px; margin:16px 0 0 0; transition:width 0.5s;" id="effectBar"></div>
+    </section>
+  </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>
+/* Hiệu ứng chọn buổi học, đổi video, hiệu ứng bar, scroll đến video khi chọn trên mobile */
+const lessons = [
+  {title: "Buổi 1", drive: "1pd4ogQ1sPYqTetSdGmU0UOwgOFbdqDp_"},
+  {title: "Buổi 2", drive: "1Z0vXfpwZd10yTbgAoO6Fh3ZpYSPZSTKx"},
+  {title: "Buổi 3", drive: "1aI_CFxSSqs5b8x_jo2CJSm-mvXc2ulU4"},
+  {title: "Buổi 4", drive: "1fOhYItHvVL4QcTsQ7XF-o4ofVIHI8YY9"},
+  {title: "Buổi 5", drive: "1S8sCafknNjw92z8jnKJL1IH-yzcIhQQO"},
+  {title: "Buổi 6", drive: "1pBJwIwk-jnMFEVFTyQA7dw1T0njVWiPQ"},
+  {title: "Buổi 7", drive: "1cQV4YnIi_zuIIi-ttoGIgu44egjYWrux"},
+  {title: "Buổi 8", drive: "1e66Y-B4eFytM-D8D_BwB1h7UK11E-SBe"},
+  {title: "Buổi 9", drive: "1jopLDqWoiZb0WYQKHdbIoC9i4QULa-2t"},
+  {title: "Buổi 10", drive: "1_mxLuccprU1-ZEbVp6tL59jLiYIoG3em"},
+  {title: "Buổi 11", drive: "1SYnhEepoXT2l0o11Zrm_8laAZTSxB0WF"},
+  {title: "Buổi 12", drive: "1plrm6Ynm5vWbWWMzp1M3JKyG7D1WinEs"},
+  {title: "Buổi 13", drive: "1hX7zfwWlKb0GYf4YxwcUuWcKkB2GmX0d"},
+  {title: "Buổi 14", drive: "1G7Yrr_B19skdR6Kj7BBuC-JN1XtIFBuH"},
+  {title: "Buổi 15", drive: "11a_fosLD6Q7BsPx1oArgHDWiqlY3ArDN"},
+  {title: "Buổi 16", drive: "1ZYgmTJs1ChArIWKN5BgD9RHyE7QAppOy"},
+  {title: "Buổi 17", drive: "1vRama_bTZ5ZfcrADo-cnuvj44ds46tgG"},
+  {title: "Buổi 18", drive: "1GxqheDUc8VKd80xIDmWZJR3H0XeoaFKZ"}
+];
+const lessonList = document.getElementById('lessonList');
+const videoTitle = document.getElementById('videoTitle');
+const lessonVideo = document.getElementById('lessonVideo');
+const effectBar = document.getElementById('effectBar');
+let currentIdx = 0;
+
+// Hiệu ứng chọn buổi học
+[...lessonList.children].forEach((li, idx) => {
+  li.style.cursor = 'pointer';
+  li.style.padding = '8px 0 8px 8px';
+  li.style.borderRadius = '6px';
+  li.style.transition = 'background 0.2s, color 0.2s, box-shadow 0.2s';
+  li.addEventListener('mouseenter', () => {
+    li.style.background = '#e0e7ff';
+    li.style.color = '#4f46e5';
+  });
+  li.addEventListener('mouseleave', () => {
+    if (currentIdx !== idx) {
+      li.style.background = '';
+      li.style.color = '';
+    }
+  });
+  li.addEventListener('click', () => {
+    // Bỏ active cũ
+    [...lessonList.children].forEach((l, i) => {
+      l.style.background = '';
+      l.style.color = '';
+      l.style.fontWeight = '';
+      l.style.boxShadow = '';
+    });
+    // Active mới
+    li.style.background = 'linear-gradient(90deg,#6366f1 0%,#818cf8 100%)';
+    li.style.color = '#fff';
+    li.style.fontWeight = 'bold';
+    li.style.boxShadow = '0 2px 8px #6366f1';
+    // Đổi video
+    const driveId = li.getAttribute('data-drive');
+    lessonVideo.src = `https://drive.google.com/file/d/${driveId}/preview`;
+    videoTitle.textContent = lessons[idx].title;
+    // Hiệu ứng bar
+    effectBar.style.width = '0';
+    setTimeout(() => {
+      effectBar.style.width = '100%';
+    }, 80);
+    currentIdx = idx;
+    // Scroll đến video trên mobile
+    if (window.innerWidth < 900) {
+      setTimeout(() => {
+        document.querySelector('.video-panel').scrollIntoView({behavior:'smooth', block:'start'});
+      }, 200);
+    }
+  });
+});
+// Active mặc định buổi 1
+lessonList.children[0].style.background = 'linear-gradient(90deg,#6366f1 0%,#818cf8 100%)';
+lessonList.children[0].style.color = '#fff';
+lessonList.children[0].style.fontWeight = 'bold';
+lessonList.children[0].style.boxShadow = '0 2px 8px #6366f1';
+effectBar.style.width = '100%';
+
+// Nút "Bắt đầu học" chuyển đến buổi 1 (scroll video)
+document.getElementById('startBtn').addEventListener('click', function(e){
+  e.preventDefault();
+  if(window.innerWidth < 900) {
+    document.querySelector('.video-panel').scrollIntoView({behavior:'smooth', block:'start'});
+  } else {
+    // Hiệu ứng rung nhẹ video panel
+    const vp = document.querySelector('.video-panel');
+    vp.animate([
+      {transform:'translateX(0)'},
+      {transform:'translateX(-8px)'},
+      {transform:'translateX(8px)'},
+      {transform:'translateX(0)'}
+    ], {duration:300});
+  }
+});
+</script>
+
+
